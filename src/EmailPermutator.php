@@ -24,11 +24,11 @@ class EmailPermutator
     public function permutate()
     {
         if (empty($this->firstName) || empty($this->lastName)) {
-            throw new \Exception('First name and Last name must be present', 1);
+            throw new \Exception('First name and Last name must be present');
         }
 
         if (empty($this->domain)) {
-            throw new \Exception('Domain must be present', 1);
+            throw new \Exception('Domain must be present');
         }
 
         $this->addSpecialCharactersBetweenNames()
