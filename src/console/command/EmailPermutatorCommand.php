@@ -17,19 +17,19 @@ class EmailPermutatorCommand extends Command
             ->setName('tool:permutate')
             ->setDescription('Generate emails based on given data.')
             ->addArgument(
-                'domain',
-                InputArgument::REQUIRED,
-                'Domain'
-            )
-            ->addArgument(
                 'first_name',
-                InputArgument::OPTIONAL,
+                InputArgument::REQUIRED,
                 'First name'
             )
             ->addArgument(
                 'last_name',
-                InputArgument::OPTIONAL,
+                InputArgument::REQUIRED,
                 'Last name'
+            )
+            ->addArgument(
+                'domain',
+                InputArgument::REQUIRED,
+                'Domain'
             );
     }
 

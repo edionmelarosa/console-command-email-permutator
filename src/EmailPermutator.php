@@ -23,17 +23,8 @@ class EmailPermutator
 
     public function permutate()
     {
-        if (empty($this->firstName) || empty($this->lastName)) {
-            throw new \Exception('First name and Last name must be present');
-        }
-
-        if (empty($this->domain)) {
-            throw new \Exception('Domain must be present');
-        }
-
         $this->addSpecialCharactersBetweenNames()
-            ->addFirstNameAndLastName()
-            ->addByFirstCharacterCombination();
+            ->addFirstNameAndLastName();
 
         return $this;
     }
@@ -55,9 +46,6 @@ class EmailPermutator
         foreach ($this->specialCharacters as $specialCharacter) {
             $this->pushEmail("{$firstName}{$specialCharacter}{$lastName}");
             $this->pushEmail("{$lastName}{$specialCharacter}{$firstName}");
-            $this->pushEmail(substr($firstName, 0, 1) . "{$specialCharacter}{$lastName}");
-            $this->pushEmail("{$firstName}{$specialCharacter}" . substr($lastName, 0, 1));
-            $this->pushEmail(substr($firstName, 0, 1) . "{$specialCharacter}" . substr($lastName, 0, 1));
         }
 
         return $this;
@@ -70,15 +58,6 @@ class EmailPermutator
 
         return $this;
     }
-
-    private function addByFirstCharacterCombination()
-    {
-        $this->pushEmail(substr($this->firstName, 0, 1) . "{$this->lastName}");
-        $this->pushEmail(substr($this->lastName, 0, 1) . "{$this->firstName}");
-
-        return $this;
-    }
-
 
     /**
      * 
